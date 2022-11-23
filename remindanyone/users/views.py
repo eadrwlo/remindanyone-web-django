@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from users.forms import CustomUserCreationForm
 
-def login_user(request):
+def loginUser(request):
     if request.method == 'POST':
         username = request.POST['username'].lower()
         password = request.POST['password']
@@ -23,12 +23,12 @@ def login_user(request):
                 messages.error(request, "Password incorrect!")
     return render(request, 'users/login.html')
 
-def logout_user(request):
+def logoutUser(request):
     # messages.success(request, "User was logged out.")
     logout(request)
     return redirect('login')
 
-def register_user(request):
+def registerUser(request):
     form = CustomUserCreationForm()
 
     if request.method == 'POST':
