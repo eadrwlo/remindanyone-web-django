@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<main class="px-3">
+    <img src="{% static 'users/bell.svg' %}" alt="Bootstrap" width="100" height="">
+    <br>
+    <br>
+    <h1>Remind Anyone</h1>
+
+
+    <div class="container">
+        <form action="{% url 'register' %}" method="POST" class="form auth__form">
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="mb-3">
+                <label for="formInput#text" class="form-label">{{field.label}}: </label>
+                {{field}}
+                {% comment %} {% if field.help_text %}
+                  <small>{{ field.help_text}}</small>
+                {% endif %} {% endcomment %}
+                {% for error in field.errors %}
+                  <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endfor %}
+            <input type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white" value="Register">
+
+
+          </form>
+
+    </div>
+
+</main>
+{% endblock content %}
